@@ -92,17 +92,20 @@ const StoreLocator = (): JSX.Element => {
         </Switch>
         <p>Results</p>
       </div>
-      <div className="h-[calc(100vh-224px)] md:flex md:border">
+      <div className="relative h-[calc(100vh-224px)] md:flex md:h-[calc(100vh-220px)] md:border">
         {showResults && (
-          <div className="overflow-y-auto bg-white md:static md:h-full md:w-1/3">
+          <div className="absolute top-0 bottom-0 left-0 right-0 z-0 overflow-y-auto bg-white md:static md:h-full md:w-1/3">
             <VerticalResults CardComponent={LocationCard} />
           </div>
         )}
-        <div className="-z-20 h-full md:w-2/3">
+        <div className="absolute -z-20 h-full w-full md:static md:w-2/3">
           <MapboxMap
             mapboxAccessToken={import.meta.env.YEXT_PUBLIC_MAPBOX_API_KEY || ""}
             PinComponent={PinComponent}
+            onDrag={() => {}}
             mapboxOptions={{
+              style: "mapbox://styles/mapbox/streets-v11",
+              center: [-73.985664, 40.74844],
               zoom: 12,
               interactive: true,
             }}
