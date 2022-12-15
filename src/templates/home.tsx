@@ -14,8 +14,9 @@ import {
 import PageLayout from "../components/page-layout";
 import Favicon from "../public/yext-favicon.ico";
 import SearchExperience from "../components/SearchExperience";
-import "mapbox-gl/dist/mapbox-gl.css";
 import StoreLocator from "../components/StoreLocator";
+import { LocationBias } from "@yext/search-ui-react";
+import Header from "../components/Header";
 
 export const getPath: GetPath<TemplateProps> = () => {
   return `index.html`;
@@ -54,8 +55,10 @@ const Static: Template<TemplateRenderProps> = () => {
   return (
     <SearchExperience verticalKey="locations">
       <PageLayout>
-        <div className="max-w-4xl">
+        <Header />
+        <div className="max-w-7xl md:mx-auto">
           <StoreLocator />
+          {/* <LocationBias /> */}
         </div>
       </PageLayout>
     </SearchExperience>

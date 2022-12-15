@@ -1,5 +1,5 @@
 import * as React from "react";
-import Header from "./header";
+import Header from "./Header";
 
 type Props = {
   children?: React.ReactNode;
@@ -7,8 +7,8 @@ type Props = {
 
 const PageLayout = ({ children }: Props) => {
   return (
-    <div className="min-h-screen">
-      <Header />
+    <div className="min-h-screen font-primary">
+      {/* <Header /> */}
       {children}
     </div>
   );

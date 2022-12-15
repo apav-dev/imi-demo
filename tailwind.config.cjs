@@ -8,6 +8,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        primary: ["Roboto"],
+      },
       colors: {
         primary: "var(--primary-color, #2563eb)",
         "primary-light": "var(--primary-color-light, #dbeafe)",
