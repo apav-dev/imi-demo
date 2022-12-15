@@ -16,7 +16,7 @@ import Favicon from "../public/yext-favicon.ico";
 import SearchExperience from "../components/SearchExperience";
 import StoreLocator from "../components/StoreLocator";
 import { LocationBias } from "@yext/search-ui-react";
-import Header from "../components/Header";
+import Header from "../components/header";
 
 export const getPath: GetPath<TemplateProps> = () => {
   return `index.html`;
