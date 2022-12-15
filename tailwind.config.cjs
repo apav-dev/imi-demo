@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        primary: ["Roboto"],
+        primary: ["Sora"],
       },
       colors: {
         primary: "var(--primary-color, #2563eb)",
