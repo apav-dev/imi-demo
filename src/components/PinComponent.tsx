@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 // you need to install react icons (npm i react-icons) to use this icon
 import * as React from "react";
 import { PinComponent, Coordinate } from "@yext/search-ui-react";
 import { Popup, LngLatLike } from "mapbox-gl";
 import Location from "../types/locations";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Transition } from "@headlessui/react";
 import { IconContext } from "react-icons";
 import { BiMapPin } from "react-icons/bi";
@@ -20,9 +21,11 @@ const MapPin: PinComponent<Location> = (props) => {
   const [hover, setHover] = useState(false);
 
   const { mapbox, result } = props;
+  const location = result.rawData;
 
   // grab the coordinates from the result
-  const yextCoordinate = result.rawData.yextDisplayCoordinate;
+  const yextCoordinate = location.yextDisplayCoordinate;
+  const address = location.address;
 
   // manage the open state of the popup with useState and useRef
   const [active, setActive] = useState(false);
@@ -30,15 +33,15 @@ const MapPin: PinComponent<Location> = (props) => {
     new Popup({ offset: 15 }).on("close", () => setActive(false))
   );
 
-  // useEffect(() => {
-  //   // render the popup on the map when the active state changes
-  //   if (active && yextCoordinate) {
-  //     popupRef.current
-  //       .setLngLat(transformToMapboxCoord(yextCoordinate))
-  //       .setText(result.name || "unknown location")
-  //       .addTo(mapbox);
-  //   }
-  // }, [active, mapbox, result, yextCoordinate]);
+  useEffect(() => {
+    // render the popup on the map when the active state changes
+    if (active && yextCoordinate) {
+      popupRef.current
+        .setLngLat(transformToMapboxCoord(yextCoordinate))
+        .setText(result.name || "unknown location")
+        .addTo(mapbox);
+    }
+  }, [active, mapbox, result, yextCoordinate]);
 
   // create a callback to open the popup on click
   const handleClick = useCallback(() => {
@@ -61,14 +64,14 @@ const MapPin: PinComponent<Location> = (props) => {
           <div className="my-auto mx-auto flex flex-row">
             <div className="my-auto">
               <h3 className="text-lg font-normal">{result.name}</h3>
-              {/* <div className="font-sans text-stone-500">
+              <div className="font-sans text-stone-500">
                 <p className="text-xs">
                   {address?.line1}, {address?.line2}
                 </p>
                 <p className="text-xs">
                   {address?.city}, {address?.region}, {address?.postalCode}
                 </p>
-              </div> */}
+              </div>
             </div>
           </div>
         </div>

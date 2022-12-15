@@ -56,10 +56,10 @@ const Static: Template<TemplateRenderProps> = () => {
     <SearchExperience verticalKey="locations">
       <PageLayout>
         <Header />
-        <div className="max-w-7xl md:mx-auto">
+        <div className="max-w-[1440px] md:mx-auto md:px-4">
           <StoreLocator />
-          {/* <LocationBias /> */}
         </div>
+        <LocationBias customCssClasses={{ locationBiasContainer: "py-4" }} />
       </PageLayout>
     </SearchExperience>
   );
